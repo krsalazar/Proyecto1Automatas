@@ -29,6 +29,8 @@ t_divide = r'/'
 t_punto = r'\.'
 t_coma = r'\,'
 t_igual = r'='
+t_mayor = r'>'
+t_menor = r'<'
 
 #Para reconocer los nombres de variables, lo hacemos dentro de una función, no como un token mas
 
