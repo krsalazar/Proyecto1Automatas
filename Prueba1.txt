@@ -1,0 +1,5 @@
+cin>>"Hola"
+#comentario
+while-true
+nombre+1=
+if*nombre;

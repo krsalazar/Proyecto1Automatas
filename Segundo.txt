@@ -1,0 +1,3 @@
+cin "Hola"
+if*variable
+5+3,.a
