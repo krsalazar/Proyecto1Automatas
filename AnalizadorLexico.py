@@ -9,14 +9,14 @@ reservadas = [
     'DYNAMIC_CAST',	'ELSE','ENUM','EXPLICIT','EXTERN','FALSE','FLOAT','FOR','FRIEND','GOTO','IF','INLINE','INT','LONG','MUTABLE',
     'NAMESPACE','NEW','OPERATOR','PRIVATE','PROTECTED','PUBLIC','REGISTER','REINTERPRET_CAST','RETURN','SHORT','SIGNED',
     'SIZEOF','STATIC','STATIC_CAST','STRUCT','SWITCH','TEMPLATE','THIS','THROW','TRUE','TRY','TYPEDEF','TYPEID','TYPENAME',
-    'UNION','UNSIGNED','USING','VIRTUAL','VOID','VOLATILE',	'WHILE'
-
+    'UNION','UNSIGNED','USING','VIRTUAL','VOID','VOLATILE',	'WHILE', 'INCLUDE', 'STDIO', 'STDLIB', 'IO', 'GETS', 'PRINTF',
+    'SCANF'
 ]
 
 # Creamos la lista de los tokens que va a usar el lenguaje
 tokens = reservadas + [
     'ID', 'numero', 'mas', 'menos', 'multi', 'divide', 'punto', 'coma', 'igual',
-    'mayor', 'menor', 'comilla', 'puntoycoma', 'parentesisA', 'parentesisB'
+    'mayor', 'menor', 'comilla', 'puntoycoma', 'parentesisA', 'parentesisB', 'importacion'
 ]
 
 # Creamos los tokens que va a usar el lenguaje
@@ -34,6 +34,7 @@ t_comilla = r'"'
 t_puntoycoma = r';'
 t_parentesisA = r"\("
 t_parentesisB = r'\)'
+t_importacion = r'\#'
 
 
 # Para reconocer los nombres de variables, lo hacemos dentro de una función, no como un token mas
@@ -46,7 +47,7 @@ def t_ID(t):
 
     return t
 
-
+#ESto nos identifica los saltos de línea
 def t_newLine(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
@@ -54,7 +55,7 @@ def t_newLine(t):
 
 # Ahora una función para reconocer los comentarios
 def t_comment(t):
-    r'\#.*'
+    r'\/*.'
     pass
 
 
@@ -96,7 +97,7 @@ def buscarFicheros(directorio):
     return files[int(numArch) - 1]
 
 
-# Le indicamos la rita donde debe bucar el archivo
+# Le indicamos la ruta donde debe bucar el archivo
 directorio = '.'
 archivo = buscarFicheros(directorio)
 prueba = archivo
